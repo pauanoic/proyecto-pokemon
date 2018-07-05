@@ -22,100 +22,63 @@ public class GimnasioPokemon {
         String resultadobatalla, nombre,especie, evolucion1, evolucion2;
         Scanner lectura;
         char tipo;
-        int valorAtaq, valorDef, numAtaq, d, otronumAtaq, horasEntrenamiento, evolucion=0;
+        int valorAtaq, valorDef, numAtaq, d, otronumAtaq, horasEntrenamiento, evolucion=0, i, clave1, clave2;
         Menu miMenu;
-     
+        LiderGimnasio unLider;
+        
         //Instanciar poke 1, 2 y 4 
         miMenu=new Menu();
+        unLider=new LiderGimnasio("Brock","ROCA");
         lectura= new Scanner(System.in);
-        poke1=new Pokemon("Charmander",'F',"Lagartija", 3, 5, 6, "Charmeleon","Charizard");
-        System.out.println(miMenu.imagen(poke1));
-        poke2=new Pokemon("Bulbasour",'H',"Semilla", 5, 6, 7, "Ivysaur","Venusaur" );
-        System.out.println(miMenu.imagen(poke2));
-        poke4=new Pokemon("Squirtle",'A',"Tortuga", 4, 7, 5, "Wartortle", "Blastoise");
-        System.out.println(miMenu.imagen(poke4));
-
         
+        unLider.altaPokemon("Charmander",'F',"Lagartija", 3, 5, 6, "Charmeleon","Charizard");
+        unLider.altaPokemon("Bulbasour",'H',"Semilla", 5, 6, 7, "Ivysaur","Venusaur" );
+        unLider.altaPokemon("Squirtle",'A',"Tortuga", 4, 7, 5, "Wartortle", "Blastoise");
+        unLider.altaPokemon("Alonso",'A',"Tortuga", 6, 8, 5, "AlosnoResponsable", "AlonsoNoTacanio");
+        unLider.altaPokemon("Alonso",'A',"Tortuga", 6, 8, 5, "AlosnoResponsable", "AlonsoNoTacanio");
+       
         //Bienvenida al menu principal
         System.out.println(miMenu.colocaMenuBienvenida());
         do{
             d=lectura.nextInt();
-        }while(d<1 || d>5);
+        }while(d<1 || d>4);
         
         
-        while(d!=5){
+        while(d!=4){
             switch(d){
                 case 1:{
                     //Caso para visualizar los datos de los ya pokemones instanciados
                     System.out.println("   Pokemones en el gimansio \n");
-                    System.out.println(poke1.toString()+"\n");
-                    System.out.println(miMenu.imagen(poke1));
-                    System.out.println(poke2.toString()+"\n");
-                    System.out.println(miMenu.imagen(poke2));
-                    System.out.println(poke4.toString()+"\n");
-                    System.out.println(miMenu.imagen(poke4));
+                    for(i=0;i<unLider.getOcupados();i++)
+                        System.out.println(unLider.getDatos(i+1));
                 }
+
                 break;
                 case 2:{
                     //Caso para activar el sistema de batallas
                     System.out.println("Cuál Pokemon es el atacante?");
-                    System.out.println(poke1.getNombre()+".........1");
-                    System.out.println(poke2.getNombre()+".........2");
-                    System.out.println(poke4.getNombre()+".........3");
+                    for(i=0;i<unLider.getOcupados();i++)
+                        System.out.println(unLider.getNombrePokemon(i+1)+"........."+(i+1));
                     do{
-                    d=lectura.nextInt();
-                    }while(d<1 || d>3);
-                    if(d==1){
-                        System.out.println("A que Pokemon desea atacar?");
-                        System.out.println(poke2.getNombre()+".........1");
-                        System.out.println(poke4.getNombre()+".........2");
-                        do{
-                            d=lectura.nextInt();
-                        }while(d<1 || d>2);
-                        if(d==1)
-                            System.out.println(miMenu.realizaBatallaPokemon(poke1, poke2));
-                        else
-                            System.out.println(miMenu.realizaBatallaPokemon(poke1, poke4));
-                    }
-                    else{
-                        if(d==2){
-                            System.out.println("A que Pokemon desea atacar?");
-                            System.out.println(poke1.getNombre()+".........1");
-                            System.out.println(poke4.getNombre()+".........2");
-                            do{
-                                d=lectura.nextInt();
-                            }while(d<1 || d>2);
-                            if(d==1)
-                                System.out.println(miMenu.realizaBatallaPokemon(poke2, poke1));
-                            else
-                                System.out.println(miMenu.realizaBatallaPokemon(poke2, poke4));
-                        }
-                        else{
-                            System.out.println("A que Pokemon desea atacar?");
-                            System.out.println(poke1.getNombre()+".........1");
-                            System.out.println(poke2.getNombre()+".........2");
-                            do{
-                                d=lectura.nextInt();
-                            }while(d<1 || d>2);
-                            if(d==1)
-                                System.out.println(miMenu.realizaBatallaPokemon(poke4, poke1));
-                            else
-                                System.out.println(miMenu.realizaBatallaPokemon(poke4, poke1));
-                        }    
-                    }        
-                }
+                        d=lectura.nextInt();
+                        clave1=d;
+                    }while(d<1 || d>unLider.getOcupados());
+                    System.out.println("A que Pokemon desea atacar?");
+                    for(i=0;i<d-1;i++)
+                        System.out.println(unLider.getNombrePokemon(i+1)+"........."+(i+1));   
+                    for(i=d;i<unLider.getOcupados();i++)
+                        System.out.println(unLider.getNombrePokemon(i+1)+"........."+(i+1));
+                        
+                    do{
+                        d=lectura.nextInt();
+                        clave2=d;
+                    }while(d<1 || d>unLider.getOcupados() || d==clave1);
+                        
+                    System.out.println(miMenu.realizaBatallaPokemon(unLider, clave1, clave2));
+                }    
                 break;
-                
-                case 3:{
-                    //caso para comparar los pokemones 1 y 2
-                    System.out.println("     Comparar pokemones");
-                    System.out.println(poke1.getNombre()+" y "+poke2.getNombre());
-                    if(poke1.equals(poke2)==true)
-                        System.out.println("Los pokemones son iguales \n");
-                    else
-                        System.out.println("Los pokemones son distintos \n");
-                }
-                break;
+       /*         
+
                 
                 default:{
                     //Caso para crear tu propio Pokemon
@@ -197,7 +160,7 @@ public class GimnasioPokemon {
                             System.out.println("De que especie es la evolución?");
                             especie=lectura.next();
                             System.out.println("----------------- \n" + poke3.getNombre().toUpperCase() + " evoluciono a"+nombre.toUpperCase()+"  !\n----------------------\n"); 
-                            poke3.evoluciona(nombre, especie);
+                            unLider.evoluciona(poke3,nombre, especie);
                             System.out.println(poke3.toString());
                             System.out.println(miMenu.imagen(poke3));
                             evolucion=evolucion+1;
@@ -211,7 +174,7 @@ public class GimnasioPokemon {
                             System.out.println("De que especie es la evolución?");
                             especie=lectura.next();
                             System.out.println("----------------- \n" + poke3.getNombre().toUpperCase() + " evoluciono a"+nombre.toUpperCase()+"  !\n----------------------\n"); 
-                            poke3.evoluciona(nombre, especie);
+                            unLider.evoluciona(poke3,nombre, especie);
                             System.out.println(poke3.toString());
                             System.out.println(miMenu.imagen(poke3));
                             evolucion=evolucion+1;
@@ -232,12 +195,12 @@ public class GimnasioPokemon {
                                 System.out.println("Iniciando batalla pokemon \n");
             
                                 if(d==1)
-                                    System.out.println(miMenu.realizaBatallaPokemon(poke3, poke1));
+                                    System.out.println(miMenu.realizaBatallaPokemon(unLider, poke3, poke1));
                                 else
                                     if(d==2)
-                                        System.out.println(miMenu.realizaBatallaPokemon(poke3, poke2));
+                                        System.out.println(miMenu.realizaBatallaPokemon(unLider, poke3, poke2));
                                     else
-                                        System.out.println(miMenu.realizaBatallaPokemon(poke3, poke4));
+                                        System.out.println(miMenu.realizaBatallaPokemon(unLider, poke3, poke4));
                             }   
                             break;
                             case 2:{
@@ -246,7 +209,7 @@ public class GimnasioPokemon {
                                 horasEntrenamiento=lectura.nextInt();
                                 d=1;
                                 while(d!=2){
-                                    otronumAtaq=poke3.entrena(horasEntrenamiento);
+                                    otronumAtaq=unLider.entrena(poke3, horasEntrenamiento);
                                     poke3.setNumeroDeAtaques(otronumAtaq);
                                     System.out.println(poke3.getNombre()+" subio su numero de Ataques a "+otronumAtaq+"\n");
                                     System.out.println(poke3.toString());
@@ -292,15 +255,17 @@ public class GimnasioPokemon {
                     System.out.println(poke3.getNombre()+" Se fue a dormir");
                 }//Default
                 break;
+                */
             }//switch
             
         System.out.println(miMenu.colocaMenuBienvenida());
         do{
             d=lectura.nextInt();
-        }while(d<1 || d>5);
+        }while(d<1 || d>4);
         
         }//While 
         System.out.println("Gracias por visitar el gimansio Pokemon");
+        
     }//Main
     
 }//Clase 

@@ -2,10 +2,6 @@
  * Clase para modelar un Pokemon
  */
 package retopokemon;
-
-
-
-
 /**
  *
  * @author hca
@@ -78,6 +74,23 @@ public class Pokemon {
     public void setNumeroDeAtaques(int otroNumeroDeAtaques){
         numeroDeAtaques=otroNumeroDeAtaques;
     }
+
+    public void setValorDeAtaque(int valorDeAtaque) {
+        this.valorDeAtaque = valorDeAtaque;
+    }
+
+    public void setValorDeDefensa(int valorDeDefensa) {
+        this.valorDeDefensa = valorDeDefensa;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
     
     //EQUALS
     public boolean equals(Pokemon otro){
@@ -116,112 +129,335 @@ public class Pokemon {
         sb.append("Clave:    "+clave+" \n");
         return sb.toString();
     }
-    
-    /**
-     * Funcion Calcula Ganador. Recibe como parametro los puntos de Ataque y 
-     * puntos de Defensa que se calculan en las batallas Pokemon y regresa en 
-     * forma de String el ganador a traves de una desigualdad. 
-     * @param punat Puntos Atacante
-     * @param pundef Puntos Defensor
-     * @return 
-     */
-    public String calculaGanador(int punat,int pundef){
-        String resp;
-        if(punat>=pundef)
-            resp="ganaAtacante";
+
+    public String imagen(){
+    StringBuilder sb;    
+    sb=new StringBuilder(); 
+
+    if(nombre.equals("Charmander"))
+        sb.append("               _.--\"\"`-..\n"+ 
+        "            ,'          `.\n" +
+        "          ,'          __  `.\n" +
+        "         /|          \" __   \\\n" +
+        "        , |           / |.   .\n" +
+        "        |,'          !_.'|   |\n" +
+        "      ,'             '   |   |\n" +
+        "     /              |`--'|   |\n" +
+        "    |                `---'   |\n" +
+        "     .   ,                   |                       ,\".\n" +
+        "      ._     '           _'  |                    , ' \\ `\n" +
+        "  `.. `.`-...___,...---\"\"    |       __,.        ,`\"   L,|\n" +
+        "  |, `- .`._        _,-,.'   .  __.-'-. /        .   ,    \\\n" +
+        "-:..     `. `-..--_.,.<       `\"      / `.        `-/ |   .\n" +
+        "  `,         \"\"\"\"'     `.              ,'         |   |  ',,\n" +
+        "    `.      '            '            /          '    |'. |/\n" +
+        "      `.   |              \\       _,-'           |       ''\n" +
+        "        `._'               \\   '\"\\                .      |\n" +
+        "           |                '     \\                `._  ,'\n" +
+        "           |                 '     \\                 .'|\n" +
+        "           |                 .      \\                | |\n" +
+        "           |                 |       L              ,' |\n" +
+        "           `                 |       |             /   '\n" +
+        "            \\                |       |           ,'   /\n" +
+        "          ,' \\               |  _.._ ,-..___,..-'    ,'\n" +
+        "         /     .             .      `!             ,j'\n" +
+        "        /       `.          /        .           .'/\n" +
+        "       .          `.       /         |        _.'.'\n" +
+        "        `.          7`'---'          |------\"'_.'\n" +
+        "       _,.`,_     _'                ,''-----\"'\n" +
+        "   _,-_    '       `.     .'      ,\\\n" +
+        "   -\" /`.         _,'     | _  _  _.|\n" +
+        "    \"\"--'---\"\"\"\"\"'        `' '! |! /\n" +
+        "                            `\" \" -' ");
+    else
+        if(nombre.equals("Bulbasour"))
+            sb.append("                                           /\n" +
+                "                        _,.------....___,.' ',.-.\n" +
+                "                     ,-'          _,.--\"        |\n" +
+                "                   ,'         _.-'              .\n" +
+                "                  /   ,     ,'                   `\n" +
+                "                 .   /     /                     ``.\n" +
+                "                 |  |     .                       \\.\\\n" +
+                "       ____      |___._.  |       __               \\ `.\n" +
+                "     .'    `---\"\"       ``\"-.--\"'`  \\               .  \\\n" +
+                "    .  ,            __               `              |   .\n" +
+                "    `,'         ,-\"'  .               \\             |    L\n" +
+                "   ,'          '    _.'                -._          /    |\n" +
+                "  ,`-.    ,\".   `--'                      >.      ,'     |\n" +
+                " . .'\\'   `-'       __    ,  ,-.         /  `.__.-      ,'\n" +
+                " ||:, .           ,'  ;  /  / \\ `        `.    .      .'/\n" +
+                " j|:D  \\          `--'  ' ,'_  . .         `.__, \\   , /\n" +
+                "/ L:_  |                 .  \"' :_;                `.'.'\n" +
+                ".    \"\"'                  \"\"\"\"\"'                    V\n" +
+                " `.                                 .    `.   _,..  `\n" +
+                "   `,_   .    .                _,-'/    .. `,'   __  `\n" +
+                "    ) \\`._        ___....----\"'  ,'   .'  \\ |   '  \\  .\n" +
+                "   /   `. \"`-.--\"'         _,' ,'     `---' |    `./  |\n" +
+                "  .   _  `\"\"'--.._____..--\"   ,             '         |\n" +
+                "  | .\" `. `-.                /-.           /          ,\n" +
+                "  | `._.'    `,_            ;  /         ,'          .\n" +
+                " .'          /| `-.        . ,'         ,           ,\n" +
+                " '-.__ __ _,','    '`-..___;-...__   ,.'\\ ____.___.'\n" +
+                " `\"^--'..'   '-`-^-'\"--    `-^-'`.''\"\"\"\"\"`.,^.`.--' ");
         else
-            resp="ganaDefensor";
-        return resp;
-    }
-    
-    /**
-     * Metodo incrementa Ataque. este metodo se utiliza para incrementar el 
-     * valor de ataque del pokemon ganador.
-     * @param incataq Cuanto incrementa de ataque
-     */
-    public void incrementaAtaque(int incataq){
-        valorDeAtaque=valorDeAtaque+incataq;
-    }
-    
-    /**
-     * Funcion Ataca Pokemon. Esta funcion se utiliza para calcular los valores 
-     * de Puntos de Ataque y Puntos de Defensa que cadan los pokemones al 
-     * enfrentarse. A su vez, la funcion llama a las funciones calcularGanador 
-     * e Incrementa Ataque para regresar el nombre del pokemon ganador. 
-     * @param otro Pokemon defensor
-     * @return 
-     */
-    public String atacaPokemon(Pokemon otro){
-        int punataq, pundef;
-        String resp, resultataq;
-        
-        if(tipo==otro.getTipo()){
-            punataq=valorDeAtaque*numeroDeAtaques;
-            pundef=otro.getvalorDeDefensa()*otro.getNumeroDeAtaques();
-        }
-        else
-            if(tipo=='A')
-                if(otro.getTipo()=='F'){
-                    punataq=valorDeAtaque*numeroDeAtaques*5;
-                    pundef=otro.getvalorDeDefensa()*otro.getNumeroDeAtaques();
-                }
-                else{
-                    punataq=valorDeAtaque*numeroDeAtaques*2;
-                    pundef=otro.getvalorDeDefensa()*otro.getNumeroDeAtaques();
-                }
+            if(nombre.equals("Squirtle"))
+                sb.append("               ,........__\n" +
+                    "            ,-'            \"`-.\n" +
+                    "          ,'                   `-.\n" +
+                    "        ,'                        \\\n" +
+                    "      ,'                           .\n" +
+                    "      .'\\               ,\"\".       `\n" +
+                    "     ._.'|             / |  `       \\\n" +
+                    "     |   |            `-.'  ||       `.\n" +
+                    "     |   |            '-._,'||       | \\\n" +
+                    "     .`.,'             `..,'.'       , |`-.\n" +
+                    "     l                       .'`.  _/  |   `.\n" +
+                    "     `-.._'-   ,          _ _'   -\" \\  .     `\n" +
+                    "`.\"\"\"\"\"'-.`-...,---------','         `. `....__.\n" +
+                    ".'        `\"-..___      __,'\\          \\  \\     \\\n" +
+                    "\\_ .          |   `\"\"\"\"'    `.           . \\     \\\n" +
+                    "  `.          |              `.          |  .     L\n" +
+                    "    `.        |`--...________.'.        j   |     |\n" +
+                    "      `._    .'      |          `.     .|   ,     |\n" +
+                    "         `--,\\       .            `7\"\"' |  ,      |\n" +
+                    "            ` `      `            /     |  |      |    _,-'\"\"\"`-.\n" +
+                    "             \\ `.     .          /      |  '      |  ,'          `.\n" +
+                    "              \\  v.__  .        '       .   \\    /| /              \\\n" +
+                    "               \\/    `\"\"\\\"\"\"\"\"\"\"`.       \\   \\  /.''                |\n" +
+                    "                `        .        `._ ___,j.  `/ .-       ,---.     |\n" +
+                    "                ,`-.      \\         .\"     `.  |/        j     `    |\n" +
+                    "               /    `.     \\       /         \\ /         |     /    j\n" +
+                    "              |       `-.   7-.._ .          |\"          '         /\n" +
+                    "              |          `./_    `|          |            .     _,'\n" +
+                    "              `.           / `----|          |-............`---'\n" +
+                    "                \\          \\      |          |\n" +
+                    "               ,'           )     `.         |\n" +
+                    "                7____,,..--'      /          |\n" +
+                    "                                  `---.__,--.'");
             else
-                if(tipo=='F')
-                    if(otro.getTipo()=='A'){
-                        punataq=valorDeAtaque*numeroDeAtaques;
-                        pundef=otro.getvalorDeDefensa()*otro.getNumeroDeAtaques()*5;
-                    }
-                    else{
-                        punataq=valorDeAtaque*numeroDeAtaques*5;
-                        pundef=otro.getvalorDeDefensa()*otro.getNumeroDeAtaques();
-                    }
+                if(nombre.equals("Wartortle"))
+                    sb.append("     __                                _.--'\"7\n" +
+                        "    `. `--._                        ,-'_,-  ,'\n" +
+                        "     ,'  `-.`-.                   /' .'    ,|\n" +
+                        "     `.     `. `-     __...___   /  /     - j\n" +
+                        "       `.     `  `.-\"\"        \" .  /       /\n" +
+                        "         \\     /                ` /       /\n" +
+                        "          \\   /                         ,'\n" +
+                        "          '._'_               ,-'       |\n" +
+                        "             | \\            ,|  |   ...-'\n" +
+                        "             || `         ,|_|  |   | `             _..__\n" +
+                        "            /|| |          | |  |   |  \\  _,_    .-\"     `-.\n" +
+                        "           | '.-'          |_|_,' __!  | /|  |  /           \\\n" +
+                        "   ,-...___ .=                  ._..'  /`.| ,`,.      _,.._ |\n" +
+                        "  |   |,.. \\     '  `'        ____,  ,' `--','  |    /      |\n" +
+                        " ,`-..'  _)  .`-..___,---'_...._/  .'      '-...'   |      /\n" +
+                        "'.__' \"\"'      `.,------'\"'      ,/            ,     `.._.' `.\n" +
+                        "  `.             | `--........,-'.            .         \\     \\\n" +
+                        "    `-.          .   '.,--\"\"     |           ,'\\        |      .\n" +
+                        "       `.       /     |          L          ,\\  .       |  .,---.\n" +
+                        "         `._   '      |           \\        /  .  L      | /   __ `.\n" +
+                        "            `-.       |            `._   ,    l   .    j |   '  `. .\n" +
+                        "              |       |               `\"' |  .    |   /  '      .' |\n" +
+                        "              |       |                   j  |    |  /  , `.__,'   |\n" +
+                        "              `.      L                 _.   `    j ,'-'           |\n" +
+                        "               |`\"---..\\._______,...,--' |   |   /|'      /        j\n" +
+                        "               '       |                 |   .  / |      '        /\n" +
+                        "                .      .              ____L   \\'  j    -',       /\n" +
+                        "               / `.     .          _,\"     \\   | /  ,-','      ,'\n" +
+                        "              /    `.  ,'`-._     /         \\  i'.,'_,'      .'\n" +
+                        "             .       `.      `-..'             |_,-'      _.'\n" +
+                        "             |         `._      |            ''/      _,-'\n" +
+                        "             |            '-..._\\             `__,.--'\n" +
+                        "            ,'           ,' `-.._`.            .\n" +
+                        "           `.    __      |       \"'`.          |\n" +
+                        "             `-\"'  `\"\"\"\"'            7         `.\n" +
+                        "                                    `---'--.,'\"`' ");
                 else
-                    if(otro.getTipo()=='A'){
-                        punataq=valorDeAtaque*numeroDeAtaques;
-                        pundef=otro.getvalorDeDefensa()*otro.getNumeroDeAtaques()*2;
-                    }
-                    else{
-                        punataq=valorDeAtaque*numeroDeAtaques;
-                        pundef=otro.getvalorDeDefensa()*otro.getNumeroDeAtaques()*5;
-                    }
-        resp=calculaGanador(punataq, pundef);
-        if(resp.equals("ganaAtacante")){
-            incrementaAtaque(2);
-            resultataq=nombre;
-        }
-        else{
-            otro.incrementaAtaque(5);
-            resultataq=otro.getNombre();
-        }    
-        return resultataq;     
-    }
-    
-    /**
-     * Evoluciona. Esta funcion se encarga de evolucionar a los Pokemones. 
-     * @param otroNombre
-     * @param otraEspecie 
-     */
-    public void evoluciona(String otroNombre, String otraEspecie){
-        nombre=otroNombre;
-        especie=otraEspecie;
-    }
-    
-    /**
-     * Entrena. Esta funciona tiene por objetivo subir el numero de Ataques de 
-     * cada Pokemon. aumentando sus posibilidades de ganar en las batallas. 
-     * @param horasEntrenamiento
-     * @return 
-     */
-    public int entrena(int horasEntrenamiento){
-        int otronumAtaq;
-        otronumAtaq=getNumeroDeAtaques()+(horasEntrenamiento/2);
-        return otronumAtaq;
-    }
-}
+                    if(nombre.equals("Blastoise"))
+                        sb.append("                       _\n" +
+                            "            _,..-\"\"\"--' `,.-\".\n" +
+                            "          ,'      __.. --',  |\n" +
+                            "        _/   _.-\"' |    .' | |       ____\n" +
+                            "  ,.-\"\"'    `-\"+.._|     `.' | `-..,',--.`.\n" +
+                            " |   ,.                      '    j 7    l \\__\n" +
+                            " |.-'                            /| |    j||  .\n" +
+                            " `.                   |         / L`.`\"\"','|\\  \\\n" +
+                            "   `.,----..._       ,'`\"'-.  ,'   \\ `\"\"'  | |  l\n" +
+                            "     Y        `-----'       v'    ,'`,.__..' |   .\n" +
+                            "      `.                   /     /   /     `.|   |\n" +
+                            "        `.                /     l   j       ,^.  |L\n" +
+                            "          `._            L       +. |._   .' \\|  | \\\n" +
+                            "            .`--...__,..-'\"\"'-._  l L  \"\"\"    |  |  \\\n" +
+                            "          .'  ,`-......L_       \\  \\ \\     _.'  ,'.  l\n" +
+                            "       ,-\"`. / ,-.---.'  `.      \\  L..--\"'  _.-^.|   l\n" +
+                            " .-\"\".'\"`.  Y  `._'   '    `.     | | _,.--'\"     |   |\n" +
+                            "  `._'   |  |,-'|      l     `.   | |\"..          |   l\n" +
+                            "  ,'.    |  |`._'      |      `.  | |_,...---\"\"\"\"\"`    L\n" +
+                            " /   |   j _|-' `.     L       | j ,|              |   |\n" +
+                            "`--,\"._,-+' /`---^..../._____,.L',' `.             |\\  |\n" +
+                            "   |,'      L                   |     `-.          | \\j\n" +
+                            "            .                    \\       `,        |  |\n" +
+                            "             \\                __`.Y._      -.     j   |\n" +
+                            "              \\           _.,'       `._     \\    |  j\n" +
+                            "              ,-\"`-----\"\"\"\"'           |`.    \\  7   |\n" +
+                            "             /  `.        '            |  \\    \\ /   |\n" +
+                            "            |     `      /             |   \\    Y    |\n" +
+                            "            |      \\    .             ,'    |   L_.-')\n" +
+                            "             L      `.  |            /      ]     _.-^._\n" +
+                            "              \\   ,'  `-7         ,-'      / |  ,'      `-._\n" +
+                            "             _,`._       `.   _,-'        ,',^.-            `.\n" +
+                            "          ,-'     v....  _.`\"',          _:'--....._______,.-'\n" +
+                            "        ._______./     /',,-'\"'`'--.  ,-'  `.\n" +
+                            "                 \"\"\"\"\"`.,'         _\\`----...'");
+                    else
+                        if(nombre.equals("Charmeleon"))
+                            sb.append("                      ,-'`\\\n" +
+                                "                 _,\"'    j\n" +
+                                "           __....+       /               .\n" +
+                                "       ,-'\"             /               ; `-._.'.\n" +
+                                "      /                (              ,'       .'\n" +
+                                "     |            _.    \\             \\   ---._ `-.\n" +
+                                "     ,|    ,   _.'  Y    \\             `- ,'   \\   `.`.\n" +
+                                "     l'    \\ ,'._,\\ `.    .              /       ,--. l\n" +
+                                "  .,-        `._  |  |    |              \\       _   l .\n" +
+                                " /              `\"--'    /              .'       ``. |  )\n" +
+                                ".\\    ,                 |                .        \\ `. '\n" +
+                                "`.                .     |                '._  __   ;. \\'\n" +
+                                "  `-..--------...'       \\                  `'  `-\"'.  \\\n" +
+                                "      `......___          `._                        |  \\\n" +
+                                "               /`            `..                     |   .\n" +
+                                "              /|                `-.                  |    L\n" +
+                                "             / |               \\   `._               .    |\n" +
+                                "           ,'  |,-\"-.   .       .     `.            /     |\n" +
+                                "         ,'    |     '   \\      |       `.         /      |\n" +
+                                "       ,'     /|       \\  .     |         .       /       |\n" +
+                                "     ,'      / |        \\  .    +          \\    ,'       .'\n" +
+                                "    .       .  |         \\ |     \\          \\_,'        / j\n" +
+                                "    |       |  L          `|      .          `        ,' '\n" +
+                                "    |    _. |   \\          /      |           .     .' ,'\n" +
+                                "    |   /  `|    \\        .       |  /        |   ,' .'\n" +
+                                "    |   ,-..\\     -.     ,        | /         |,.' ,'\n" +
+                                "    `. |___,`    /  `.   /`.       '          |  .'\n" +
+                                "      '-`-'     j     ` /.\"7-..../|          ,`-'\n" +
+                                "                |        .'  / _/_|          .\n" +
+                                "                `,       `\"'/\"'    \\          `.\n" +
+                                "                  `,       '.       `.         |\n" +
+                                "             __,.-'         `.        \\'       |\n" +
+                                "            /_,-'\\          ,'        |        _.\n" +
+                                "             |___.---.   ,-'        .-':,-\"`\\,' .\n" +
+                                "                  L,.--\"'           '-' |  ,' `-.\\\n" +
+                                "                                        `.' ");
+                        else
+                            if(nombre.equals("Charizard"))
+                                sb.append("                 .\"-,.__\n" +
+                                    "                 `.     `.  ,\n" +
+                                    "              .--'  .._,'\"-' `.\n" +
+                                    "             .    .'         `'\n" +
+                                    "             `.   /          ,'\n" +
+                                    "               `  '--.   ,-\"'\n" +
+                                    "                `\"`   |  \\\n" +
+                                    "                   -. \\, |\n" +
+                                    "                    `--Y.'      ___.\n" +
+                                    "                         \\     L._, \\\n" +
+                                    "               _.,        `.   <  <\\                _\n" +
+                                    "             ,' '           `, `.   | \\            ( `\n" +
+                                    "          ../, `.            `  |    .\\`.           \\ \\_\n" +
+                                    "         ,' ,..  .           _.,'    ||\\l            )  '\".\n" +
+                                    "        , ,'   \\           ,'.-.`-._,'  |           .  _._`.\n" +
+                                    "      ,' /      \\ \\        `' ' `--/   | \\          / /   ..\\\n" +
+                                    "    .'  /        \\ .         |\\__ - _ ,'` `        / /     `.`.\n" +
+                                    "    |  '          ..         `-...-\"  |  `-'      / /        . `.\n" +
+                                    "    | /           |L__           |    |          / /          `. `.\n" +
+                                    "   , /            .   .          |    |         / /             ` `\n" +
+                                    "  / /          ,. ,`._ `-_       |    |  _   ,-' /               ` \\\n" +
+                                    " / .           \\\"`_/. `-_ \\_,.  ,'    +-' `-'  _,        ..,-.    \\`.\n" +
+                                    ".  '         .-f    ,'   `    '.       \\__.---'     _   .'   '     \\ \\\n" +
+                                    "' /          `.'    l     .' /          \\..      ,_|/   `.  ,'`     L`\n" +
+                                    "|'      _.-\"\"` `.    \\ _,'  `            \\ `.___`.'\"`-.  , |   |    | \\\n" +
+                                    "||    ,'      `. `.   '       _,...._        `  |    `/ '  |   '     .|\n" +
+                                    "||  ,'          `. ;.,.---' ,'       `.   `.. `-'  .-' /_ .'    ;_   ||\n" +
+                                    "|| '              V      / /           `   | `   ,'   ,' '.    !  `. ||\n" +
+                                    "||/            _,-------7 '              . |  `-'    l         /    `||\n" +
+                                    ". |          ,' .-   ,' ||               | .-.        `.      .'     ||\n" +
+                                    " `'        ,'    `\".'    |               |    `.        '. -.'       `'\n" +
+                                    "          /      ,'      |               |,'    \\-.._,.'/'\n" +
+                                    "          .     /        .               .       \\    .''\n" +
+                                    "        .`.    |         `.             /         :_,'.'\n" +
+                                    "          \\ `...\\   _     ,'-.        .'         /_.-'\n" +
+                                    "           `-.__ `,  `'   .  _.>----''.  _  __  /\n" +
+                                    "                .'        /\"'          |  \"'   '_\n" +
+                                    "               /_|.-'\\ ,\".             '.'`__'-( \\\n" +
+                                    "                 / ,\"'\"\\,'               `/  `-.|\"");
+                            else
+                                if(nombre.equals("Ivysaur"))
+                                    sb.append("                               ,'\"`.,./.\n" +
+                                        "                             ,'        Y',\"..\n" +
+                                        "                           ,'           \\  | \\\n" +
+                                        "                          /              . |  `\n" +
+                                        "                         /               | |   \\\n" +
+                                        "            __          .                | |    .\n" +
+                                        "       _   \\  `. ---.   |                | j    |\n" +
+                                        "      / `-._\\   `Y   \\  |                |.     |\n" +
+                                        "     _`.    ``    \\   \\ |..              '      |,-'\"\"7,....\n" +
+                                        "     l     '-.     . , `|  | , |`. , ,  /,     ,'    '/   ,'_,.-.\n" +
+                                        "     `-..     `-.  : :     |/ `   ' \"\\,' | _  /          '-'    /___\n" +
+                                        "      \\\"\"' __.,.-`.: :        /   /._    l'.,'\n" +
+                                        "       `--,   _.-' `\".           /__ `'-.' '         .\n" +
+                                        "       ,---..._,.--\"\"\"\"\"\"\"--.__..----,-.'   .  /    .'   ,.--\n" +
+                                        "       |                          ,':| /    | /     ;.,-'--      ,.-\n" +
+                                        "       |     .---.              .'  :|'     |/ ,.-='\"-.`\"`' _   -.'\n" +
+                                        "       /    \\    /               `. :|--.  _L,\"---.._        \"----'\n" +
+                                        "     ,' `.   \\ ,'           _,     `''   ``.-'       `-  -..___,'\n" +
+                                        "    . ,.  .   `   __     .-'  _.-           `.     .__    \\\n" +
+                                        "    |. |`        \"  ;   !   ,.  |             `.    `.`'---'\n" +
+                                        "    ,| |C\\       ` /    | ,' |(]|            -. |-..--`\n" +
+                                        "   /  \"'--'       '      /___|__]        `.  `- |`.\n" +
+                                        "  .       ,'                   ,   /       .    `. \\\n" +
+                                        "    \\                      .,-'  ,'         .     `-.\n" +
+                                        "     x---..`.  -'  __..--'\"/\"\"\"\"\"  ,-.      |   |   |\n" +
+                                        "    / \\--._'-.,.--'     _`-    _. ' /       |     -.|\n" +
+                                        "   ,   .   `-..__ ...--'  _,.-' | `   ,.-.  ;   /  '|\n" +
+                                        "  .  _,'         '\"-----\"\"      |    `   | /  ,'    ;\n" +
+                                        "  |-'  .-.    `._               |     `._// ,'     /\n" +
+                                        " _|    `-'   _,' \"`--.._________|        `,'    _ /.\n" +
+                                        "//\\   ,-._.'\"/\\__,.   _,\"     /_\\__/`. /'.-.'.-/_,`-' mh\n" +
+                                        "`-\"`\"' v'    `\"  `-`-\"              `-'`-`  `'");
+                                else
+                                    if(nombre.equals("Venusaur"))
+                                        sb.append("                           _._       _,._\n" +
+                                            "                        _.'   `. ' .'   _`.\n" +
+                                            "                ,\"\"\"/`\"\"-.-.,/. ` V'\\-,`.,--/\"\"\".\"-..\n" +
+                                            "              ,'    `...,' . ,\\-----._|     `.   /   \\\n" +
+                                            "             `.            .`  -'`\"\" .._   :> `-'   `.\n" +
+                                            "            ,'  ,-.  _,.-'| `..___ ,'   |'-..__   .._ L\n" +
+                                            "           .    \\_ -'   `-'     ..      `.-' `.`-.'_ .|\n" +
+                                            "           |   ,',-,--..  ,--../  `.  .-.    , `-.  ``.\n" +
+                                            "           `.,' ,  |   |  `.  /'/,,.\\/  |    \\|   |\n" +
+                                            "                `  `---'    `j   .   \\  .     '   j\n" +
+                                            "              ,__`\"        ,'|`'\\_/`.'\\'        |\\-'-, _,.\n" +
+                                            "       .--...`-. `-`. /    '- ..      _,    /\\ ,' .--\"'  ,'\".\n" +
+                                            "     _'-\"\"-    --  _`'-.../ __ '.'`-^,_`-\"\"\"\"---....__  ' _,-`\n" +
+                                            "   _.----`  _..--.'        |  \"`-..-\" __|'\"'         .\"\"-. \"\"'--.._\n" +
+                                            "  /        '    /     ,  _.+-.'  ||._'   \"\"\"\". .          `     .__\\\n" +
+                                            " `---    /        /  / j'       _/|..`  -. `-`\\ \\   \\  \\   `.  \\ `-..\n" +
+                                            ",\" _.-' /    /` ./  /`_|_,-\"   ','|       `. | -'`._,   L  \\ .  `.   |\n" +
+                                            "`\"' /  /  / ,__...-----| _.,  ,'            `|----.._`-.|' |. .` ..  .\n" +
+                                            "   /  '| /.,/   \\--.._ `-,' ,          .  '`.'  __,., '  ''``._ \\ \\`,'\n" +
+                                            "  /_,'---  ,     \\`._,-` \\ //  / . \\    `._,  -`,  / / _   |   `-L -\n" +
+                                            "   /       `.     ,  ..._ ' `_/ '| |\\ `._'       '-.'   `.,'     |\n" +
+                                            "  '         /    /  ..   `.  `./ | ; `.'    ,\"\" ,.  `.    \\      |\n" +
+                                            "   `.     ,'   ,'   | |\\  |       \"        |  ,'\\ |   \\    `    ,L\n" +
+                                            "   /|`.  /    '     | `-| '                  /`-' |    L    `._/  \\\n" +
+                                            "  / | .`|    |  .   `._.'                   `.__,'   .  |     |  (`\n" +
+                                            " '-\"\"-'_|    `. `.__,._____     .    _,        ____ ,-  j     \".-'\"'\n" +
+                                            "        \\      `-.  \\/.    `\"--.._    _,.---'\"\"\\/  \"_,.'     /-'\n" +
+                                            "         )        `-._ '-.        `--\"      _.-'.-\"\"        `.\n" +
+                                            "        ./            `,. `\".._________...\"\"_.-\"`.          _j\n" +
+                                            "       /_\\.__,\"\".   ,.'  \"`-...________.---\"     .\".   ,.  / \\\n" +
+                                            "              \\_/\"\"\"-'                           `-'--(_,`\"`-` mh");
+    return sb.toString();
+    } 
+}   
 
 
 
